@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -7,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         int opcao = 3;
         ArrayList<Aluno> alunos = new ArrayList<>();
+        ArrayList<Disciplina> disciplinas = new ArrayList<>();
 
         do {
             Interface.menu(
@@ -20,29 +23,35 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    Aluno aluno = Aluno.criarAluno();
-                    alunos.add(aluno);
+                    Aluno novoAluno = Aluno.criarAluno(alunos);
+                    alunos.add(novoAluno);
+
+                    Aluno.listarAlunos(alunos);
+
                     break;
                 case 2:
-                    System.out.print("\nInforme a matricula: ");
+                    System.out.print("Matrícula do estudante que deseja alterar: ");
                     int matricula = scanner.nextInt();
 
-                    for (int i = 0; i < alunos.size(); i++) {
-                        if (alunos.get(i).getMatricula() == matricula) {
-                            Aluno alunoNovo = Aluno.criarAluno();
-                            alunos.get(i).setMatricula(alunoNovo.getMatricula());
-                            alunos.get(i).setNome(alunoNovo.getNome());
-                            alunos.get(i).setCpf(alunoNovo.getCpf());
+                    Aluno alunoAtualizavel = null;
+                    for (Aluno aluno: alunos) {
+                        if (aluno.getMatricula() == matricula) {
+                            alunoAtualizavel = aluno;
                         }
                     }
+
+                    if (alunoAtualizavel != null) {
+                        Aluno.updateAluno(alunoAtualizavel);
+                    }
+
                     break;
                 case 3:
                     System.out.print("\nInforme a matricula: ");
                     matricula = scanner.nextInt();
 
-                    for (int i = 0; i < alunos.size(); i++) {
-                        if (alunos.get(i).getMatricula() == matricula) {
-                            alunos.get(i).informacoes();
+                    for (Aluno aluno: alunos) {
+                        if (aluno.getMatricula() == matricula) {
+                            aluno.informacoes();
                         }
                     }
                     break;
@@ -50,9 +59,9 @@ public class Main {
                     System.out.print("\nMatricula que deseja excluir: ");
                     matricula = scanner.nextInt();
 
-                    for (int i = 0; i < alunos.size(); i++) {
-                        if (alunos.get(i).getMatricula() == matricula) {
-                            alunos.remove(i);
+                    for (int aluno = 0; aluno < alunos.size(); aluno++) {
+                        if (alunos.get(aluno).getMatricula() == matricula) {
+                            alunos.remove(aluno);
                         }
                     }
                     break;
