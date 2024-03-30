@@ -12,10 +12,7 @@ public class Main {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         ArrayList<Disciplina> disciplinas = new ArrayList<>();
 
-        Disciplina disciplina = new Disciplina(1, "Português", 3);
-
-        usuarios.add(new Professor(1, "Professor", "1", "123", 1300.00, disciplina));
-        usuarios.add(new Aluno(2, "Luiz", "2", "123"));
+        usuarios.add(new Administrador(1, "ADM", "111.111.111-11", "1"));
 
         int opcao;
         Usuario usuarioLogado = null;
@@ -36,35 +33,54 @@ public class Main {
                     if (usuarioLogado instanceof Aluno) {
                         ((Aluno) usuarioLogado).boletim();
                     } else if (usuarioLogado instanceof Professor) {
-                        System.out.println("pass");
+                        usuarioLogado.atualizarInformacoes(scanner);
                     } else if (usuarioLogado instanceof Administrador) {
-                        disciplinas.add(((Administrador) usuarioLogado).criarDisciplina(
-                                disciplinas, scanner));
+                        Aluno novoAluno = ((Administrador) usuarioLogado).criarAluno(
+                                usuarios, scanner);
+
+                        usuarios.add(novoAluno);
                     }
 
                     break;
                 case 3:
-                    usuarioLogado.atualizarInformacoes(scanner);
+                    if (usuarioLogado instanceof Aluno) {
+                        usuarioLogado.atualizarInformacoes(scanner);
+                    } else if (usuarioLogado instanceof Professor) {
+                        usuarioLogado = null;
+                    } else if (usuarioLogado instanceof Administrador) {
+                        Professor novoProfessor = ((Administrador) usuarioLogado).criarProfessor(
+                                usuarios, scanner);
 
-//                    System.out.print("\nInforme a matricula: ");
-//                    matricula = scanner.nextInt();
-//
-//                    for (Aluno aluno: alunos) {
-//                        if (aluno.getMatricula() == matricula) {
-//                            aluno.informacoes();
-//                        }
-//                    }
+                        usuarios.add(novoProfessor);
+                    }
+
                     break;
                 case 4:
-                    usuarioLogado = null;
-//                    System.out.print("\nMatricula que deseja excluir: ");
-//                    matricula = scanner.nextInt();
-//
-//                    for (int aluno = 0; aluno < alunos.size(); aluno++) {
-//                        if (alunos.get(aluno).getMatricula() == matricula) {
-//                            alunos.remove(aluno);
-//                        }
-//                    }
+                    if (usuarioLogado instanceof Aluno) {
+                        usuarioLogado = null;
+                    } else if (usuarioLogado instanceof Administrador) {
+                        Disciplina novaDisciplina = ((Administrador) usuarioLogado).criarDisciplina(
+                                disciplinas, usuarios, scanner);
+
+                        if (novaDisciplina != null) {
+                            disciplinas.add(novaDisciplina);
+                        } else {
+                            System.out.println("Precisa-se cadastrar um professor antes!");
+                        }
+                    }
+
+                    break;
+                case 5:
+                    if (usuarioLogado instanceof Administrador) {
+                        usuarioLogado.atualizarInformacoes(scanner);
+                    }
+
+                    break;
+                case 6:
+                    if (usuarioLogado instanceof Administrador) {
+                        usuarioLogado = null;
+                    }
+
                     break;
             }
         } while (opcao != 5);

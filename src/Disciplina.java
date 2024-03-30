@@ -5,6 +5,7 @@ public class Disciplina {
     private String nome;
     private ArrayList<Aluno> alunosMatriculados;
     private int totNotas;
+    private float[] notas;
     private Professor professor;
 
 
@@ -13,6 +14,7 @@ public class Disciplina {
         this.nome = nome;
         this.alunosMatriculados = null;
         this.totNotas = totNotas;
+        this.notas = new float[this.totNotas];
         this.professor = professor;
     }
 

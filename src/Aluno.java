@@ -26,28 +26,6 @@ public class Aluno extends Usuario {
         return opcao;
     }
 
-    static public Aluno criarAluno(ArrayList<Aluno> alunos) {
-        System.out.println("Chegou aqui");
-        Scanner scanner = new Scanner(System.in);
-
-        int matricula;
-        if (!alunos.isEmpty()) {
-            matricula = (alunos.get(alunos.size() - 1).getMatricula()) + 1;
-        } else {
-            matricula = 1;
-        }
-
-        System.out.print("Informe o nome: ");
-        String nome = scanner.nextLine();
-
-        System.out.print("Informe o CPF: ");
-        String cpf = scanner.nextLine();
-
-        Aluno aluno = new Aluno(matricula, nome, cpf, "123");
-
-        return aluno;
-    }
-
     @Override
     public void atualizarInformacoes(Scanner scanner) {
         int opcao;
@@ -80,8 +58,6 @@ public class Aluno extends Usuario {
                     String novaSenha = scanner.nextLine();
                     super.setSenha(novaSenha);
                     break;
-                default:
-                    System.out.println("Opção inválida.");
             }
         } while (opcao != 4);
     }

@@ -6,10 +6,11 @@ public class Professor extends Usuario{
     private double salario;
     private Disciplina disciplina;
     public Professor(int matricula, String nome, String cpf, String senha,
-                     double salario, Disciplina disciplina) {
+                     double salario) {
+
         super(matricula, nome, cpf, senha);
         this.salario = salario;
-        this.disciplina = disciplina;
+        this.disciplina = null;
     }
 
     @Override
@@ -42,8 +43,6 @@ public class Professor extends Usuario{
                     "ATUALIZAR NOME",
                     "ATUALIZAR CPF",
                     "ATUALIZAR SENHA",
-                    "ATUALIZAR SALARIO",
-                    "ATUALIZAR DISCIPLINA",
                     "SAIR");
 
             System.out.println("\nDigite uma opção: ");
@@ -66,14 +65,23 @@ public class Professor extends Usuario{
                     String novaSenha = scanner.nextLine();
                     super.setSenha(novaSenha);
                     break;
-                case 4:
-                    System.out.print("Digite o novo salário: ");
-                    double novoSalario = scanner.nextDouble();
-                    this.salario = novoSalario;
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
             }
-        } while (opcao != 5);
+        } while (opcao != 4);
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 }
