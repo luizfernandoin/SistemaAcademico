@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -57,7 +55,17 @@ public class Main {
                     break;
                 case 4:
                     if (usuarioLogado instanceof Aluno) {
-                        usuarioLogado = null;
+                        String[] nomesDisciplinas = new String[disciplinas.size()];
+                        for (int i = 0; i < disciplinas.size(); i++) {
+                            nomesDisciplinas[i] = disciplinas.get(i).getNome();
+                        }
+
+                        Interface.menu(nomesDisciplinas);
+
+                        System.out.println("\nMatricular-se em qual disciplina: ");
+                        opcao = scanner.nextInt();
+
+                        ((Aluno) usuarioLogado).matricularEmDisciplina(disciplinas.get(opcao-1));
                     } else if (usuarioLogado instanceof Administrador) {
                         Disciplina novaDisciplina = ((Administrador) usuarioLogado).criarDisciplina(
                                 disciplinas, usuarios, scanner);
@@ -71,7 +79,9 @@ public class Main {
 
                     break;
                 case 5:
-                    if (usuarioLogado instanceof Administrador) {
+                    if (usuarioLogado instanceof Aluno) {
+                        usuarioLogado = null;
+                    } else if (usuarioLogado instanceof Administrador) {
                         usuarioLogado.atualizarInformacoes(scanner);
                     }
 
@@ -83,6 +93,6 @@ public class Main {
 
                     break;
             }
-        } while (opcao != 5);
+        } while (opcao != 7);
     }
 }

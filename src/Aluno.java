@@ -19,7 +19,8 @@ public class Aluno extends Usuario {
         System.out.println("[1] Ver perfil");
         System.out.println("[2] Boletim");
         System.out.println("[3] Alterar Informações");
-        System.out.println("[4] Logout");
+        System.out.println("[4] Matricular-se em Disciplina");
+        System.out.println("[5] Logout");
 
         System.out.println("\nInforme uma das opções acima: ");
         int opcao = scanner.nextInt();
@@ -86,6 +87,12 @@ public class Aluno extends Usuario {
             System.out.println(disciplinasArray[i].getNome());
         }
 
+    }
+
+    public void matricularEmDisciplina(Disciplina disciplina) {
+        this.disciplinas.add(disciplina);
+        System.out.println("Chegou aqui");
+        disciplina.matricularAluno(this);
     }
 
     public double getCre() {

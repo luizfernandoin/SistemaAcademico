@@ -12,7 +12,7 @@ public class Disciplina {
     public Disciplina(int id, String nome, int totNotas, Professor professor) {
         this.id = id;
         this.nome = nome;
-        this.alunosMatriculados = null;
+        this.alunosMatriculados = new ArrayList<>();
         this.totNotas = totNotas;
         this.notas = new float[this.totNotas];
         this.professor = professor;
