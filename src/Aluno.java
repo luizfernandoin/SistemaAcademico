@@ -15,6 +15,7 @@ public class Aluno extends Usuario {
 
     @Override
     public int menu(Scanner scanner) {
+        System.out.println("====================");
         System.out.println("[1] Ver perfil");
         System.out.println("[2] Boletim");
         System.out.println("[3] Alterar Informações");

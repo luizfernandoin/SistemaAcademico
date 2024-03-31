@@ -15,6 +15,7 @@ public class Professor extends Usuario{
 
     @Override
     public int menu(Scanner scanner) {
+        System.out.println("====================");
         System.out.println("[1] Ver Perfil");
         System.out.println("[2] Alterar Informações");
         System.out.println("[3] Logout");
@@ -29,10 +30,14 @@ public class Professor extends Usuario{
     public void verPerfil() {
         super.verPerfil();
         System.out.println(
-            "Salário: " + this.salario + "\n" +
-            "Disciplina: " + this.disciplina.getNome() + "\n"
+                "Salário: " + this.salario
         );
+
+        if (this.disciplina != null) {
+            System.out.println("Disciplina: " + this.disciplina.getNome() + "\n");
+        }
     }
+
 
     @Override
     public void atualizarInformacoes(Scanner scanner) {

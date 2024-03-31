@@ -9,6 +9,7 @@ public class Administrador extends Usuario {
     }
     @Override
     public int menu(Scanner scanner) {
+        System.out.println("====================");
         System.out.println("[1] Ver perfil");
         System.out.println("[2] Cadastrar Aluno");
         System.out.println("[3] Cadastrar Professor");
@@ -137,7 +138,6 @@ public class Administrador extends Usuario {
 
         return alunos;
     }
-
 
     public Disciplina criarDisciplina(ArrayList<Disciplina> disciplinas,
                                       ArrayList<Usuario> usuarios,

@@ -36,6 +36,7 @@ public abstract class Usuario {
         String senha;
 
         do {
+            System.out.println("====================");
             System.out.print("Matrícula: ");
             matricula = scanner.nextInt();
             System.out.print("Senha: ");
@@ -47,6 +48,9 @@ public abstract class Usuario {
                     return usuario;
                 }
             }
+
+            System.out.println("Matricula e/ou senha incorreta!");
+
         } while (usuarioLogado == null);
 
         return null;
