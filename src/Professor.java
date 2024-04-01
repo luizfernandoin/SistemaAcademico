@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Professor extends Usuario{
     private double salario;
-    private Disciplina disciplina;
+    private ArrayList<Disciplina> disciplinas;
     public Professor(int matricula, String nome, String cpf, String senha,
                      double salario) {
 
         super(matricula, nome, cpf, senha);
         this.salario = salario;
-        this.disciplina = null;
+        this.disciplinas = null;
+        this.disciplinas = new ArrayList<>();
     }
 
     @Override
@@ -33,8 +34,13 @@ public class Professor extends Usuario{
                 "Salário: " + this.salario
         );
 
-        if (this.disciplina != null) {
-            System.out.println("Disciplina: " + this.disciplina.getNome() + "\n");
+        if (this.disciplinas != null) {
+            System.out.print("Disciplina: ");
+            for (Disciplina disciplina: disciplinas) {
+                System.out.print(disciplina.getNome() + "; ");
+            }
+
+            System.out.println();
         }
     }
 
@@ -82,11 +88,11 @@ public class Professor extends Usuario{
         this.salario = salario;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public ArrayList<Disciplina> getDisciplina() {
+        return disciplinas;
     }
 
     public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+        this.disciplinas.add(disciplina);
     }
 }
